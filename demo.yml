@@ -60,42 +60,6 @@ spec:
           value: sonar
         - name: POSTGRES_PASSWORD
           value: sonar
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-service
-spec:
-  ports:
-  - port: 5432
-    targetPort: 5432
-  selector:
-    app: postgres
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: 500m
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: sonarqube
-spec:
-  rules:
-  - host: sonarqube.urbinternal.com
-    http:
-      paths:
-      - pathType: Prefix # Add this line
-        path: "/"
-        backend:
-          service:
-            name: sonarqube-service
-            port: 
-              number: 9000
-  tls:
-  - hosts:
-    - sonarqube.urbinternal.com
-    secretName: sonarqube.urbinternal.com
+
 
 
