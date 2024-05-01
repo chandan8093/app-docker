@@ -25,4 +25,4 @@ jobs:
       #   env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      runs-on: self-hosted
+      
